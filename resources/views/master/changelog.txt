@@ -1,0 +1,61 @@
+3 November 15
+
+- Updated slicknav plugin
+- Fixed some minor css issues on mobile
+- Placed "Find a transfer" button as last on mobile
+
+Files changed:
+
+js/jquery.slicknav.min.js
+css/style.css
+css/style-rtl.css
+index.html
+destinations-single.html
+destinations-micro.html
+search-results.html
+
+-----------------------------------------------
+
+2 June 15
+
+- Fixed contact form map scroll issue on mobile
+- Added responsive-tables.js to booking step 1 page
+- Added tab functionality to services page
+- Added my account page
+
+Files changed:
+
+css/style.css
+css/style-rtl.css
+booking-step1.html
+services.html
+
+Files added:
+
+css/responsive-tables.css
+js/responsive-tables.js
+account.html
+
+-----------------------------------------------
+
+7 April 15
+
+- updated plugins
+- added RTL support
+
+Files changed:
+
+css/style.css
+js/jquery.datetimepicker.js
+js/jquery.min.js
+js/jquery.slicknav.min.js
+js/jquery.uniform.min.js
+
+Files added:
+
+css/style-rtl.css
+
+-----------------------------------------------
+
+20 November 14
+Official release
