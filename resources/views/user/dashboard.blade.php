@@ -13,7 +13,7 @@
 	{{ Html::style('css/style.css') }}
 	{{ Html::style('css/animate.css') }}
 	{{ Html::style('css/responsive-tables.css') }}
-	<link href='http://fonts.googleapis.com/css?family=Raleway:400,500,600,700|Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<!--<link href='http://fonts.googleapis.com/css?family=Raleway:400,500,600,700|Montserrat:400,700' rel='stylesheet' type='text/css'>-->
 	<link rel="shortcut icon" href="images/favicon.ico" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -49,7 +49,7 @@
 						<li><a href="#" title="Pages">Messages</a>	
 						</li>
 						
-						<li><a href="" title="welcome">welcome</a>
+						<li><a href="" title="welcome">welcome {{ Auth::user()->first_name }} </a>
                           <ul>
 								<li><a href="{{ url('/logout') }}" title="logout">logout</a></li>
 							
@@ -123,31 +123,31 @@
 				<!--- //Content -->
 				
 				<div class="three-fourth">
+            
+		         
 					<form>
 						<table class="data responsive">
 							<tr>
 								<th>Image</th>
 								<th>title</th>
-								<th>price</th>
+								<th>description</th>
+								<th>category</th>
 								<th>Edit</th>
-							</tr>
-							<tr>
-								<td>Hand baggage up to 5kg <i>and max dimensions 40 x 22 x 55 cm</i></td>
-								<td>Free</td>
-								<td>Free</td>
-								<td>Edit</td>
-							</tr>
-							<tr>
-								<td>Pieces of baggage up to 15kg <i>and max dimensions 53 x 31 x 75 cm</i></td>
-								<td>10,00 USD</td>
-								<td>
-									
-								</td>
-								<td>
-									
-								</td>
+								<th>Delete</th>
 							</tr>
 							
+							@if ($vendorlistings->count() > 0)
+							@foreach($vendorlistings as $listing)
+							<tr>
+								<td>{!! Html::image('/img/post/'.$listing->pix_upload,null,array('style'=>'width:50px; height: 50px;')) !!}</td>
+								<td>{{ $listing->title }}</td>
+								<td>{{ $listing->listing_desc }}</td>
+								<td>{{ $listing->category->name }}</td>
+								<td><a href="/dashboard/edit/{{ $listing->id }}">Edit</a></td>
+								<td><a href="/vendorlisting/delete/{{ $listing->id }}">Delete</a></td>
+							</tr>
+							@endforeach
+							@endif
 							
 						</table>
 						
@@ -171,8 +171,18 @@
 					
 					<!-- Tab -->
 				<article class="single" id="tab2">
+
+	
 						<div class="box">
 							<h2>Create a list</h2>
+							 @if(Session::has('post_create'))
+                        <div class="alert alert-success"><em>{!! session('post_create') !!}</em>
+                        <button type="button" class="close" data-dismiss="alert" arial-label="close">
+                        <span aria-hidden="true">&times</span>
+                        </button>
+                        </div>
+                        @endif 
+							 @include ('common.errors')
 					{!! Form::open( array('url'=>'vendorlisting','files'=>'true')) !!} 
 							<fieldset>
 								<div class="f-row">
@@ -193,8 +203,9 @@
 								</div>
 								<div class="f-row">
 									<div class="one-half">
+
 						{!! Form::label('state','state') !!} 
-                        {!! Form::text('state',null, array('class'=>'form-control')) !!}
+                        {!! Form::select('state',$states, array('class'=>'form-control')) !!}
 									</div>
 									<div class="one-half">
 						{!! Form::label('city','City') !!} 
@@ -215,20 +226,25 @@
 						<div class="f-row">
 									<div class="f-row">
 									<div class="one-half">
-						{!! Form::label('listing_category_id','Category') !!} 
-                        {!! Form::text('listing_category_id',null, array('class'=>'form-control')) !!}
+						{!! Form::label('category_id','Category') !!} 
+                        {!! Form::select('category_id',$categories, array('class'=>'form-control')) !!}
 									</div>
 									<div class="one-half">
-						{!! Form::label('max price','Max-price') !!} 
-                        {!! Form::text('max_price',null, array('class'=>'form-control')) !!} 
+						<input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
 									</div>
 								</div>
 						
 									<div class="one-half">
-						{!! Form::label('upload_pix','Upload photo') !!} 
-                        {!! Form::file('upload_pix',null, array('class'=>'form-control')) !!} 
+						{!! Form::label('pix_upload','Upload photo') !!} 
+                        {!! Form::file('pix_upload',null, array('class'=>'form-control')) !!} 
 									</div>
+								</div<div class="f-row">
+								<div class="full-width">
+						{!! Form::submit('Create Listing' , array('class'=>'btn color medium full')) !!} 
+                        {!! Form::close() !!} 
+							<!--<input type="submit" value="Create an account" class="btn color medium full" />-->
 								</div>
+							</div>
 						
 
 

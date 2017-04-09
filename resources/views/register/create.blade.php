@@ -30,6 +30,12 @@
 							</div>
 							<div class="f-row">
 								<div class="full-width">
+						{!! Form::label('username','username')!!}
+						{!! Form::text('username',null,array('class'=>'form-control')) !!}
+								</div>
+							</div>
+							<div class="f-row">
+								<div class="full-width">
 						{!! Form::label('email','Email') !!} 
                         {!! Form::email('email',null, array('class'=>'form-control')) !!} 
 								</div>

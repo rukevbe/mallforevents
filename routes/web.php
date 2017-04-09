@@ -13,10 +13,16 @@
 
 Route::get('/', 'HomeController@index');
 Route::get('login', 'HomeController@login');
-Route::get('register','UserController@create');
-Route::post('login','UserController@login');
-Route::post('register','UserController@store');
+Route::get('/dashboard', 'HomeController@dashboard')
+  ->name('my_dashboard');
 
-Route::get('dashboard','UserController@dashboard');
+Route::get('register','UserController@create');
+
+Route::post('login','UserController@login');
+Route::post('vendorlisting','PostListingController@store');
+Route::post('register','UserController@store');
+Route::post('/logout', 'Auth\LoginController@logout');
+
 Route::get('logout','UserController@logout');
+
 

@@ -25,19 +25,20 @@
 				<div class="content one-half modal">
 					<!--Login-->
 					<div class="box">
-						<form  role="form" method="POST"  action="{{ url('login') }}">
-						 @if(Session::has('vendor_login'))
-                        <div class="alert alert-danger"><em>{!! session('vendor_login') !!}</em>
+					@if(Session::has('login_failed'))
+                        <div class="alert alert-danger"><em>{!! session('login_failed') !!}</em>
                         <button type="button" class="close" data-dismiss="alert" arial-label="close">
                         <span aria-hidden="true">&times</span>
                         </button>
                         </div>
                         @endif 
                         @include ('common.errors')
+						<form  role="form" method="POST"  action="{{ url('login') }}">
+						 
 							<div class="f-row">
 								<div class="full-width">
 									<label for="email">E-Mail Address</label>
-									<input type="email" name="email"  required/>
+									<input type="text" name="username"  required/>
 									
 								</div>
 

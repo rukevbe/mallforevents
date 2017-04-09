@@ -1,38 +1,55 @@
 <?php
 
 namespace App\Http\Controllers;
+use Hash;
 use Validator;
 use Session;
 use Illuminate\Support\Facades\Auth;
 use App\user;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\categories;
+use App\states;
+use vendorlistings;
+
+
 //use App\Http\controllers\controller;
 class UserController extends Controller
 {
     //
 
 public  function login(Request $request){
+
+        
     $this->validate($request, [
-     'email' => 'required',
+     'username' => 'required',
       'password'  => 'required'
       ]);
 
-    $email= $request->email;
+    $username= $request->username;
     $password=$request->password;
 
-    $authenticator = Auth::attempt(['email'=>$email, 'password'=>$password]);
-    dd($authenticator);
-    if($authenticator){
-      user::where('email', $request->email)->first();
-      return redirect('dashboard');
-    }
-    Session::flash('vendor_login','username/password not valid');
-      return redirect('login');
+     $user  = User::where('username', $username)
+                  ->orWhere('email', $username)->first();
 
+   // $user = Auth::attempt($request->only(['email', 'password']));
+  if ($user instanceOf User) {
+         
+          
+    if (Hash::check($request->password, $user->password)) {
+           Auth::login($user);
+          
+            return redirect()->route('my_dashboard');
+             
+             
     }
+}
+        Session::flash('login_failed','username/password is incorrect');
+        return redirect('login');
+       
 
-   
+  }
+ 
 
 public function create(){
       return view('register.create');
@@ -43,7 +60,8 @@ public function store(Request $request){
   $validator= validator::make($request->all(),[
             'first_name'=>'required|max:20|min:2',
             'last_name'=>'required|max:20|min:3',
-            'email'=>'required|max:100|unique:users',
+             'email'=>'required|max:100|unique:users',
+            'username'=>'required|max:100|unique:users',
             'password'=>'required|min:5',
            'repeat_password'=>'required|min:5|same:password',
             ]);
@@ -59,7 +77,8 @@ public function store(Request $request){
             $user->first_name= $request->first_name;
             $user->last_name= $request->last_name;
             $user->email= $request->email;
-            $user->password=$request->password;
+            $user->username= $request->username;
+            $user->password= bcrypt($request->password);
            //$this->resource()->attach($resource->id);
            $user->save();
             Session::flash('vendor_create','registration successful');
@@ -67,14 +86,11 @@ public function store(Request $request){
 
       }
       
-      public function UserProfile(){
-           $title = ucwords(Auth::user()->username );
-           return view('user.dashboard')
-           ->with('title',$title);
-      }
 
       public function logout(){
-        
+         Auth::logout();
+        Session::flush();
+        return redirect('/');
       }
       public function dashboard(){
         return view('user.dashboard');
