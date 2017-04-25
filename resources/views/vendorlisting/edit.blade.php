@@ -26,7 +26,6 @@
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>
-     
     </script>
   </head>
  
@@ -92,9 +91,8 @@
 					
 					<div class="widget">
 						<ul class="categories">
-							<li class="active"><a href="#tab1">view listing</a></li>
-							<li class=""><a href="#tab2">create listing</a></li>
-							<li class=""><a href="#tab3">who viewed</a></li>
+							<li class="active"><a href="/dashboard">Back</a></li>
+						
 
 						</ul>
 					</div>
@@ -119,99 +117,31 @@
 				<!--- Content -->
 				<div class="full-width content">
 				
-                  
+                   
 				</div>
 				<!--- //Content -->
 				
 				<div class="three-fourth">
-				 @if(Session::has('delete_listing'))
-                        <div class="alert alert-success"><em>{!! session('delete_listing') !!}</em>
-                        <button type="button" class="close" data-dismiss="alert" arial-label="close">
-                        <span aria-hidden="true">&times</span>
-                        </button>
-                        </div>
-                        @endif 
-                   @if(Session::has('post_update'))
-                        <div class="alert alert-success"><em>{!! session('post_update') !!}</em>
-                        <button type="button" class="close" data-dismiss="alert" arial-label="close">
-                        <span aria-hidden="true">&times</span>
-                        </button>
-                        </div>
-                        @endif 
+            
 		         
-					<form>
-						<table class="data responsive">
-							<tr>
-								<th>Image</th>
-								<th>title</th>
-								<th>description</th>
-								<th>category</th>
-								<th>Edit</th>
-								<th>Delete</th>
-							</tr>
+					<div class="box">
+							<h2>update a list</h2>
 							
-							@if ($vendorlistings->count() > 0)
+                        
+				@include ('common.errors')
 
-							@foreach($vendorlistings as $listing)
-							<tr>
-								<td>{!! Html::image('/img/post/'.$listing->pix_upload,null,array('style'=>'width:50px; height: 50px;')) !!}</td>
-								<td>{{ $listing->title }}</td>
-								<td>{{ $listing->listing_desc }}</td>
-								<td>{{ $listing->category->name }}</td>
-								<td><a href="{!! url('vendorlisting/'.$listing->id.'/edit')!!}">Edit</a></td>
-								<td>
-								   <a href="{{ url('/vendorlisting/delete')}}/{{ $listing->id}}">Delete</a>
-								</td>
-							</tr>
-                                   
-							@endforeach
-                         
-						</table>
-						@endif
-							
-							
-						<div class="actions">
-						  
-			 {{ $vendorlistings->links() }}
-						</div>
-					</form>
-				</div>
-				
-				<!--- Sidebar -->
-		
-				<!--- //Sidebar -->
-			</div>
-		</div>
-	</main>
-						</div>
-						
-					</article>
-					<!-- //Tab -->
-					
-					<!-- Tab -->
-				<article class="single" id="tab2">
-
-	
-						<div class="box">
-							<h2>Create a list</h2>
-							 @if(Session::has('post_create'))
-                        <div class="alert alert-success"><em>{!! session('post_create') !!}</em>
-                        <button type="button" class="close" data-dismiss="alert" arial-label="close">
-                        <span aria-hidden="true">&times</span>
-                        </button>
-                        </div>
-                        @endif 
-							 @include ('common.errors')
-					{!! Form::open( array('url'=>'vendorlisting','files'=>'true')) !!} 
+				{!! Form::model($listings, array('route'=> array('vendorlistings.update',$listings->id),'method'=>'PUT', 'files'=>'true')) !!} 
+					  
 							<fieldset>
 								<div class="f-row">
 									<div class="one-half">
+
 						{!! Form::label('title','title') !!} 
-                        {!! Form::text('title',null, array('class'=>'form-control','placeholder'=>'place the title of listing here')) !!} 
+                        {!! Form::text('title',null, array('class'=>'form-control')) !!} 
 									</div>
 									<div class="one-half">
 						{!! Form::label('listing_desc','Description') !!} 
-                        {!! Form::textarea('listing_desc',null, array('class'=>'form-control','placeholder'=>'short description about your listing')) !!} 
+                        {!! Form::textarea('listing_desc',null, array('class'=>'form-control')) !!} 
 									</div>
 								</div>
 						<div class="f-row">
@@ -223,8 +153,7 @@
 								<div class="f-row">
 									<div class="one-half">
 
-						{!! Form::label('state','state') !!} 
-                        {!! Form::select('state_id',$states, array('class'=>'form-control')) !!}
+						
 									</div>
 									<div class="one-half">
 						{!! Form::label('city','City') !!} 
@@ -245,8 +174,7 @@
 						<div class="f-row">
 									<div class="f-row">
 									<div class="one-half">
-						{!! Form::label('category_id','Category') !!} 
-                        {!! Form::select('category_id',$categories, array('class'=>'form-control')) !!}
+						
 									</div>
 									<div class="one-half">
 						<input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
@@ -256,14 +184,10 @@
 									<div class="one-half">
 						{!! Form::label('pix_upload','Upload photo') !!} 
                         {!! Form::file('pix_upload',null, array('class'=>'form-control')) !!} 
-                        
-                       
-                        
-
 									</div>
 								</div<div class="f-row">
 								<div class="full-width">
-						{!! Form::submit('Create Listing' , array('class'=>'btn color medium full')) !!} 
+						{!! Form::submit('Update' , array('class'=>'btn color medium full')) !!} 
                         {!! Form::close() !!} 
 							<!--<input type="submit" value="Create an account" class="btn color medium full" />-->
 								</div>
@@ -277,27 +201,6 @@
 							</form>
 						</div>
 						
-					</article>
-					<!-- //Tab -->
-					<article class="single" id="tab3">
-						<div class="box">
-							<h2>General settings</h2>
-							<main class="main" role="main">
-		<!-- Search -->
-		
-		<!-- //Search -->
-		
-		<div class="wrap">
-			<div class="row">
-				<!--- Content -->
-				<div class="full-width content">
-					<h2>Who viewed my listing</h2>
-					<p> </p>
-				</div>
-				<!--- //Content -->
-				
-				<div class="three-fourth">
-					nothing here for now
 				</div>
 				
 				<!--- Sidebar -->
@@ -309,6 +212,12 @@
 						</div>
 						
 					</article>
+					<!-- //Tab -->
+					
+					<!-- Tab -->
+				
+					<!-- //Tab -->
+					
 				</div>
 				<!--- //Content -->
 			</div>
@@ -371,37 +280,11 @@
 	<!-- //Footer -->
 	
 	<!-- Preloader -->
-	<div class="preloader">
-		<div id="followingBallsG">
-			<div id="followingBallsG_1" class="followingBallsG"></div>
-			<div id="followingBallsG_2" class="followingBallsG"></div>
-			<div id="followingBallsG_3" class="followingBallsG"></div>
-			<div id="followingBallsG_4" class="followingBallsG"></div>
-		</div>
-	</div>
+	
 	<!-- //Preloader -->
 
     <!-- jQuery -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="js/jquery.uniform.min.js"></script>
-	<script src="js/jquery.slicknav.min.js"></script>
-	<script src="js/wow.min.js"></script>
-	<script src="js/scripts.js"></script>
-	<script>
-		$(document).ready(function () {
-			$('.single').hide().first().show();
-			$('.categories li:first').addClass('active');
-
-			$('.categories a').on('click', function (e) {
-				e.preventDefault();
-				$(this).closest('li').addClass('active').siblings().removeClass('active');
-				$($(this).attr('href')).show().siblings('.single').hide();
-			});
-
-			var hash = $.trim( window.location.hash );
-			if (hash) $('.categories a[href$="'+hash+'"]').trigger('click');
-		});
-	</script>
+   
 	
 	<!-- TEMPLATE STYLES -->
 	

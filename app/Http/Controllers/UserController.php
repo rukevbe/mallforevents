@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use App\categories;
 use App\states;
 use vendorlistings;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\mymail;
 
 
 //use App\Http\controllers\controller;
@@ -79,9 +81,18 @@ public function store(Request $request){
             $user->email= $request->email;
             $user->username= $request->username;
             $user->password= bcrypt($request->password);
+
            //$this->resource()->attach($resource->id);
-           $user->save();
-            Session::flash('vendor_create','registration successful');
+           $saved=$user->save();
+           //if($saved){
+            //$title='hello guys';
+         //Mail::send('email.mymail', function($message) use ($user) {
+           // $message->to($user->email)->subject('mail confirmation');
+           //});
+           
+           //}
+
+            Session::flash('vendor_create','registration successful, a mail has been sent to you');
             return redirect('login');
 
       }

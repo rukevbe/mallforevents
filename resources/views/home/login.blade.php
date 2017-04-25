@@ -25,6 +25,13 @@
 				<div class="content one-half modal">
 					<!--Login-->
 					<div class="box">
+					 @if(Session::has('vendor_create'))
+                        <div class="alert alert-success"><em>{!! session('vendor_create') !!}</em>
+                        <button type="button" class="close" data-dismiss="alert" arial-label="close">
+                        <span aria-hidden="true">&times</span>
+                        </button>
+                        </div>
+                        @endif 
 					@if(Session::has('login_failed'))
                         <div class="alert alert-danger"><em>{!! session('login_failed') !!}</em>
                         <button type="button" class="close" data-dismiss="alert" arial-label="close">

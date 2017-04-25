@@ -16,13 +16,20 @@ Route::get('login', 'HomeController@login');
 Route::get('/dashboard', 'HomeController@dashboard')
   ->name('my_dashboard');
 
+Route::put('/vendorlisting/{id}/update/', 'PostListingController@update')->name('vendorlistings.update');
+Route::get('vendorlisting/{id}/edit','PostListingController@edit');
 Route::get('register','UserController@create');
-
+Route::get('vendorlisting/delete/{id}','PostListingController@destroy');
+Route::post('vendorlisting','PostListingController@update');
 Route::post('login','UserController@login');
 Route::post('vendorlisting','PostListingController@store');
 Route::post('register','UserController@store');
 Route::post('/logout', 'Auth\LoginController@logout');
+Route::get('/search', 'HomeController@search');
+Route::get('keyword', 'HomeController@keyword');
+
 
 Route::get('logout','UserController@logout');
+
 
 

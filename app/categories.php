@@ -19,6 +19,7 @@ class categories extends Model
     	    ->pluck('name', 'id');
     }
 
+
     public function vendorListings()
     {
     	return $this->hasMany('App\vendorlistings');

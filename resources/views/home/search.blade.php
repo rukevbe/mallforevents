@@ -1,12 +1,23 @@
-
-		<!-- Header -->
-	   
  @include('webparts/header')
-	 
 	
-<main class="main" role="main">
+	<!-- Main -->
+	<main class="main" role="main">
+		<!-- Search -->
+		
 		<!-- Intro -->
-		@include('webparts/intro')
+		<header class="site-title color">
+			<div class="wrap">
+				<div class="container">
+					
+					<nav role="navigation" class="breadcrumbs">
+						<ul>
+							
+							
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</header>
 		<!-- //Intro -->
 		
 		<!-- Search -->
@@ -14,27 +25,28 @@
 		<!-- //Search -->
 		
 		<!-- Services iconic -->
-		@include('webparts/serviceiconic')
 		
+		@include('webparts/query')
 		<!-- //Services iconic -->
 		
 		<!-- Call to action -->
-		{{--@include('webparts/calltoaction')--}}
+		
 		<!-- //Call to action -->
 		
 		<!-- Services -->
-	   {{--@include('webparts/services')--}}
+	  
 		<!-- //Services -->
 		
 		<!-- Testimonials -->
-		@include('webparts/testimonials')
+		
 		<!-- //Testimonials -->
-		{{--@include('webparts/partners')--}}
+		
 		
 		
 		<!-- Call to action -->
 		@include('webparts/calltoaction2')
 		<!-- //Call to action -->
+	
 	</main>
 	<!-- //Main -->
 	
