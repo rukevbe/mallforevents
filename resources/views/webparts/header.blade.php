@@ -10,7 +10,7 @@
 	<!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>@yield('title')</title>
-	{{ Html::style('css/theme-pink.css') }}
+	{{ Html::style('css/theme-dblue.css') }}
 	{{ Html::style('css/style.css') }}
 	{{ Html::style('css/animate.css') }}
 	

@@ -7,8 +7,8 @@ use Auth;
 use App\categories;
 use App\states;
 use App\vendorlistings;
-
-
+use Spatie\Fractal\Fractal;
+use  App\Transformers\VendorListingsTransformer;
 class HomeController extends Controller
 {
    
@@ -36,15 +36,26 @@ class HomeController extends Controller
      public function search(){
       $categories=categories::findAll();
       $states= states::findAll(); 
-
        return view('home.search', compact('categories','states'));
      }
 
-     public function keyword(Request $query){
-     $category=$request->input('category');
-     $location=$request->input('state');
+      public function keywordsearch(Request $request){
+      $cat=$request->input('categories');
+      $state=$request->input('states');
+      $categories=categories::findAll();
+      $states= states::findAll(); 
+     $vendorlist1=vendorlistings::GetListingsById( $cat,$state);
+
+     $vendorlist = Fractal::create($vendorlist1, new VendorListingsTransformer())->toArray();
+     
+     //$vendorlist1 = json_decode($vendorlist);
+     //dd($vendorlist);
+     //return response()->json(compact('vendorlist'));
+
+     return view('home.search', compact('vendorlist','categories','states','vendorlist1'));
 
      }
+   
       
       
 }

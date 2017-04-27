@@ -21,4 +21,16 @@ class vendorlistings extends Model
     {
     	return $this->belongsTo('App\categories');
     }
+
+         public function scopeGetListingsById($query, $cat, $state)
+    {
+        return $query
+        ->where('vendorlistings.category_id', 'like', '%'.$cat.'%')
+        ->Where('vendorlistings.state_id', 'like', '%'.$state.'%')
+        ->orderBy('id')
+        ->paginate('3');
+
+    }
+    
+
 }

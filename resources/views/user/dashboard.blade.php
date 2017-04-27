@@ -126,17 +126,15 @@
 				<div class="three-fourth">
 				 @if(Session::has('delete_listing'))
                         <div class="alert alert-success"><em>{!! session('delete_listing') !!}</em>
-                        <button type="button" class="close" data-dismiss="alert" arial-label="close">
-                        <span aria-hidden="true">&times</span>
+                       <a href="javascript:void(0)" class="close color" title="Close">x</a>
                         </button>
                         </div>
                         @endif 
                    @if(Session::has('post_update'))
-                        <div class="alert alert-success"><em>{!! session('post_update') !!}</em>
-                        <button type="button" class="close" data-dismiss="alert" arial-label="close">
-                        <span aria-hidden="true">&times</span>
-                        </button>
-                        </div>
+                         <div class="alert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+  {!! session('post_updated') !!}
+</div>
                         @endif 
 		         
 					<form>
@@ -196,8 +194,7 @@
 							<h2>Create a list</h2>
 							 @if(Session::has('post_create'))
                         <div class="alert alert-success"><em>{!! session('post_create') !!}</em>
-                        <button type="button" class="close" data-dismiss="alert" arial-label="close">
-                        <span aria-hidden="true">&times</span>
+                        <a href="javascript:void(0)" class="close color" title="Close">x</a>
                         </button>
                         </div>
                         @endif 

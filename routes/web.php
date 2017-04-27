@@ -26,7 +26,7 @@ Route::post('vendorlisting','PostListingController@store');
 Route::post('register','UserController@store');
 Route::post('/logout', 'Auth\LoginController@logout');
 Route::get('/search', 'HomeController@search');
-Route::get('keyword', 'HomeController@keyword');
+Route::get('keyword', 'HomeController@keywordsearch');
 
 
 Route::get('logout','UserController@logout');

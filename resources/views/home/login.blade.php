@@ -27,8 +27,7 @@
 					<div class="box">
 					 @if(Session::has('vendor_create'))
                         <div class="alert alert-success"><em>{!! session('vendor_create') !!}</em>
-                        <button type="button" class="close" data-dismiss="alert" arial-label="close">
-                        <span aria-hidden="true">&times</span>
+                        <a href="javascript:void(0)" class="close color" title="Close">x</a>
                         </button>
                         </div>
                         @endif 
