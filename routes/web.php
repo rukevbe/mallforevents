@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::group(['middleware'=>['web']],function(){
 Route::get('/', 'HomeController@index');
 Route::get('login', 'HomeController@login');
 Route::get('/dashboard', 'HomeController@dashboard')
@@ -28,8 +28,7 @@ Route::post('/logout', 'Auth\LoginController@logout');
 Route::get('/search', 'HomeController@search');
 Route::get('keyword', 'HomeController@keywordsearch');
 
-
 Route::get('logout','UserController@logout');
-
+});
 
 

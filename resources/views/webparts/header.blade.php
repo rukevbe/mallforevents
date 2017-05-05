@@ -4,9 +4,9 @@
    <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	<meta name="keywords" content="Transfers - Private Transport and Car Hire HTML Template" />
-	<meta name="description" content="Transfers - Private Transport and Car Hire HTML Template">
-	<meta name="author" content="themeenergy.com">
+	<meta name="keywords" content="vendor - vendor listing" />
+	<meta name="description" content="vendor listing">
+	<meta name="author" content="smartvendor">
 	<!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>@yield('title')</title>
@@ -15,7 +15,7 @@
 	{{ Html::style('css/animate.css') }}
 	
 	<link href='http://fonts.googleapis.com/css?family=Raleway:400,500,600,700|Montserrat:400,700' rel='stylesheet' type='text/css'>
-	<link rel="shortcut icon" href="images/favicon.ico" />
+	<link rel="shortcut icon" href="images/favicon.fw.ico" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,7 +35,7 @@
 <div class="wrap">
 				<!-- Logo -->
 				<div class="logo">
-					<a href="index.html" title="Transfers"><img src="images/transfers.jpg" alt="Transfers" /></a>
+					<a href="index.html" title="Transfers"><img src="images/smartvendor.jpg" alt="smartvendor" /></a>
 				</div>
 				<!-- //Logo -->
 				

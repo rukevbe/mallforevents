@@ -11,9 +11,8 @@ use Illuminate\Http\Request;
 use App\categories;
 use App\states;
 use vendorlistings;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\mymail;
-
+use Mail;
+use App\Mail\welcome;
 
 //use App\Http\controllers\controller;
 class UserController extends Controller
@@ -57,6 +56,8 @@ public function create(){
       return view('register.create');
        
     }
+
+      
 public function store(Request $request){
   
   $validator= validator::make($request->all(),[
@@ -83,15 +84,8 @@ public function store(Request $request){
             $user->password= bcrypt($request->password);
 
            //$this->resource()->attach($resource->id);
-           $saved=$user->save();
-           //if($saved){
-            //$title='hello guys';
-         //Mail::send('email.mymail', function($message) use ($user) {
-           // $message->to($user->email)->subject('mail confirmation');
-           //});
-           
-           //}
-
+        $saved=$user->save(); 
+        Mail::to($user)->send(new welcome($user));   
             Session::flash('vendor_create','registration successful, a mail has been sent to you');
             return redirect('login');
 

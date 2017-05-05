@@ -28,7 +28,7 @@ class vendorlistings extends Model
         ->where('vendorlistings.category_id', 'like', '%'.$cat.'%')
         ->Where('vendorlistings.state_id', 'like', '%'.$state.'%')
         ->orderBy('id')
-        ->paginate('3');
+        ->paginate('10');
 
     }
     

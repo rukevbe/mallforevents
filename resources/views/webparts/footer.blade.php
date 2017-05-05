@@ -3,8 +3,8 @@
 			<div class="row">
 				<!-- Column -->
 				<article class="one-half">
-					<h6>About us</h6>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.</p>
+					<h6>About </h6>
+					<p>smartvendor is a plafform for you to display your service or product</p>
 				</article>
 				<!-- //Column -->
 				
@@ -12,8 +12,8 @@
 				<article class="one-fourth">
 					<h6>Need help?</h6>
 					<p>Contact us via phone or email:</p>
-					<p class="contact-data"><span class="ico phone"></span> +1 555 555 555</p>
-					<p class="contact-data"><span class="ico email"></span> <a href="mailto:help@transfers.com">help@transfers.com</a></p>
+					<p class="contact-data"><span class="ico phone"></span>08120133311</p>
+					<p class="contact-data"><span class="ico email"></span> <a href="mailto:enquiries@smarttech.com.ng">enquiries@smarttech.com.ng</a></p>
 				</article>
 				<!-- //Column -->
 				
@@ -33,7 +33,7 @@
 			</div>
 			
 			<div class="copy">
-				<p>Copyright 2014, Themeenergy. All rights reserved. </p>
+				<p>Powered by <a href="http://www.smarttech.com.ng">SmarttechIT solutions</a> <?php echo date("Y");?> </p>
 				
 				<nav role="navigation" class="foot-nav">
 					<ul>

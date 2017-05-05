@@ -27,7 +27,7 @@
 		<!-- //Services -->
 		
 		<!-- Testimonials -->
-		@include('webparts/testimonials')
+		{{--@include('webparts/testimonials')--}}
 		<!-- //Testimonials -->
 		{{--@include('webparts/partners')--}}
 		

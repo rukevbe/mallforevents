@@ -3,9 +3,9 @@
    <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	<meta name="keywords" content="Transfers - Private Transport and Car Hire HTML Template" />
-	<meta name="description" content="Transfers - Private Transport and Car Hire HTML Template">
-	<meta name="author" content="themeenergy.com">
+	<meta name="keywords" content="vendor listing" />
+	<meta name="description" content="vendor listing">
+	<meta name="author" content="smartvendor.com.ng">
 	<!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>@yield('title')</title>
@@ -13,8 +13,8 @@
 	{{ Html::style('css/style.css') }}
 	{{ Html::style('css/animate.css') }}
 	{{ Html::style('css/responsive-tables.css') }}
-	<!--<link href='http://fonts.googleapis.com/css?family=Raleway:400,500,600,700|Montserrat:400,700' rel='stylesheet' type='text/css'>-->
-	<link rel="shortcut icon" href="images/favicon.ico" />
+	<link href='http://fonts.googleapis.com/css?family=Raleway:400,500,600,700|Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="images/favicon.fw.ico" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -44,7 +44,7 @@
 					<ul>
 						<li class="active"><a href="{{ url('/') }}" title="">Home</a></li>
 						
-						<li><a href="tailor-made.html" title="Tailor made">Tailor made</a></li>
+						
 						
 						<li><a href="contact.html" title="Contact">Contact</a></li>
 						<li><a href="#" title="Pages">Messages</a>	
@@ -148,29 +148,30 @@
 								<th>Delete</th>
 							</tr>
 							
-							@if ($vendorlistings->count() > 0)
+							
 
 							@foreach($vendorlistings as $listing)
 							<tr>
-								<td>{!! Html::image('/img/post/'.$listing->pix_upload,null,array('style'=>'width:50px; height: 50px;')) !!}</td>
+								<td>{!! Html::image('/img/post/'.$listing->pix_upload,null,array('style'=>'width:60px; height: 60px;')) !!}</td>
 								<td>{{ $listing->title }}</td>
 								<td>{{ $listing->listing_desc }}</td>
 								<td>{{ $listing->category->name }}</td>
 								<td><a href="{!! url('vendorlisting/'.$listing->id.'/edit')!!}">Edit</a></td>
 								<td>
-								   <a href="{{ url('/vendorlisting/delete')}}/{{ $listing->id}}">Delete</a>
+								   <a href="{{ url('/vendorlisting/delete')}}/{{ $listing->id }}">Delete</a>
 								</td>
 							</tr>
                                    
-							@endforeach
-                         
+							
+                         @endforeach
 						</table>
-						@endif
+						
+						
 							
 							
 						<div class="actions">
-						  
-			 {{ $vendorlistings->links() }}
+						 {{ $vendorlistings->links() }}
+			
 						</div>
 					</form>
 				</div>
@@ -314,57 +315,7 @@
 	<!-- //Main -->
 	
 	<!-- Footer -->
-	<footer class="footer black" role="contentinfo">
-		<div class="wrap">
-			<div class="row">
-				<!-- Column -->
-				<article class="one-half">
-					<h6>About us</h6>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.</p>
-				</article>
-				<!-- //Column -->
-				
-				<!-- Column -->
-				<article class="one-fourth">
-					<h6>Need help?</h6>
-					<p>Contact us via phone or email:</p>
-					<p class="contact-data"><span class="ico phone"></span> +1 555 555 555</p>
-					<p class="contact-data"><span class="ico email"></span> <a href="mailto:help@transfers.com">help@transfers.com</a></p>
-				</article>
-				<!-- //Column -->
-				
-				<!-- Column -->
-				<article class="one-fourth">
-					<h6>Follow us</h6>
-					<ul class="social">
-						<li class="facebook"><a href="#" title="facebook">facebook</a></li>
-						<li class="twitter"><a href="#" title="twitter">twitter</a></li>
-						<li class="gplus"><a href="#" title="gplus">google plus</a></li>
-						<li class="linkedin"><a href="#" title="linkedin">linkedin</a></li>
-						<li class="vimeo"><a href="#" title="vimeo">vimeo</a></li>
-						<li class="pinterest"><a href="#" title="pinterest">pinterest</a></li>
-					</ul>
-				</article>
-				<!-- //Column -->
-			</div>
-			
-			<div class="copy">
-				<p>Copyright 2014, Themeenergy. All rights reserved. </p>
-				
-				<nav role="navigation" class="foot-nav">
-					<ul>
-						<li><a href="#" title="Home">Home</a></li>
-						<li><a href="#" title="Blog">Blog</a></li>
-						<li><a href="#" title="About us">About us</a></li>
-						<li><a href="#" title="Contact us">Contact us</a></li>
-						<li><a href="#" title="Terms of use">Terms of use</a></li>
-						<li><a href="#" title="Help">Help</a></li>
-						<li><a href="#" title="For partners">For partners</a></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-	</footer>
+	@include('webparts/footer')
 	<!-- //Footer -->
 	
 	<!-- Preloader -->
